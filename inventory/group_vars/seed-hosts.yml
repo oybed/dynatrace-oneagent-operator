@@ -14,9 +14,12 @@ openshift_cluster_content:
 - object: dynatrace-oneagent
   content:
   - name: "crd"
+    namespace: "dynatrace"
     file: "{{ inventory_dir }}/../deploy/crd.yaml"
   - name: "operator"
+    namespace: "dynatrace"
     file: "{{ inventory_dir }}/../deploy/operator.yaml"
   - name: "cr"
+    namespace: "dynatrace"
     template: "{{ inventory_dir }}/../deploy/cr-template.yaml"
     params: "{{ inventory_dir }}/../deploy/cr.params"
