@@ -1,54 +1,90 @@
-kind: Role
-apiVersion: rbac.authorization.k8s.io/v1beta1
-metadata:
-  name: dynatrace-oneagent-operator
-  namespace: dynatrace
-  labels:
-    dynatrace: operator
-    operator: oneagent
-rules:
-- apiGroups:
-  - dynatrace.com
-  resources:
-  - oneagents
-  verbs:
-  - get
-  - list
-  - watch
-  - update
-- apiGroups:
-  - apps
-  resources:
-  - daemonsets
-  verbs:
-  - get
-  - list
-  - watch
-  - create
-  - update
-  - delete
-- apiGroups:
-  - "" # "" indicates the core API group
-  resources:
-  - pods
-  verbs:
-  - get
-  - list
-  - watch
-  - delete
----
-kind: RoleBinding
-apiVersion: rbac.authorization.k8s.io/v1beta1
-metadata:
-  name: default-account-dynatrace-oneagent-operator
-  namespace: dynatrace
-  labels:
-    dynatrace: operator
-    operator: oneagent
-subjects:
-- kind: ServiceAccount
-  name: default
-roleRef:
-  kind: Role
-  name: dynatrace-oneagent-operator
-  apiGroup: rbac.authorization.k8s.io
+apiVersion: v1
+kind: List
+items:
+- kind: ClusterRole
+  apiVersion: v1
+  metadata:
+    creationTimestamp: null
+    name: cluster-admin-dynatrace
+  rules:
+  - apiGroups:
+    - '*'
+    attributeRestrictions: null
+    resources:
+    - '*'
+    verbs:
+    - '*'
+  - apiGroups: null
+    attributeRestrictions: null
+    nonResourceURLs:
+    - '*'
+    resources: []
+    verbs:
+    - '*'
+- kind: ClusterRoleBinding
+  apiVersion: v1
+  groupNames: null
+  metadata:
+    creationTimestamp: null
+    name: cluster-admin-dynatrace
+  roleRef:
+    name: cluster-admin-dynatrace
+  subjects:
+  - kind: ServiceAccount
+    name: default
+    namespace: dynatrace
+  userNames:
+  - system:serviceaccount:dynatrace:default
+- kind: Role
+  apiVersion: rbac.authorization.k8s.io/v1beta1
+  metadata:
+    name: dynatrace-oneagent-operator
+    namespace: dynatrace
+    labels:
+      dynatrace: operator
+      operator: oneagent
+  rules:
+  - apiGroups:
+    - dynatrace.com
+    resources:
+    - oneagents
+    verbs:
+    - get
+    - list
+    - watch
+    - update
+  - apiGroups:
+    - apps
+    resources:
+    - daemonsets
+    verbs:
+    - get
+    - list
+    - watch
+    - create
+    - update
+    - delete
+  - apiGroups:
+    - "" # "" indicates the core API group
+    resources:
+    - pods
+    verbs:
+    - get
+    - list
+    - watch
+    - delete
+- kind: RoleBinding
+  apiVersion: rbac.authorization.k8s.io/v1beta1
+  metadata:
+    name: default-account-dynatrace-oneagent-operator
+    namespace: dynatrace
+    labels:
+      dynatrace: operator
+      operator: oneagent
+  subjects:
+  - kind: ServiceAccount
+    name: default
+  roleRef:
+    kind: Role
+    name: dynatrace-oneagent-operator
+    apiGroup: rbac.authorization.k8s.io

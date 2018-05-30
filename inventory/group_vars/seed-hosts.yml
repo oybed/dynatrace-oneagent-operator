@@ -1,0 +1,20 @@
+---
+---
+
+openshift_cluster_content:
+- object: namespace
+  content:
+  - name: "dynatrace"
+    file: "{{ inventory_dir }}/../deploy/namespace.yaml"
+- object: policy
+  content:
+  - name: "rbac"
+    file: "{{ inventory_dir }}/../deploy/rbac.yaml"
+- object: dynatrace-oneagent
+  content:
+  - name: "crd"
+    file: "{{ inventory_dir }}/../deploy/crd.yaml"
+  - name: "operator"
+    file: "{{ inventory_dir }}/../deploy/operator.yaml"
+  - name: "cr"
+    file: "{{ inventory_dir }}/../deploy/cr.yaml"
