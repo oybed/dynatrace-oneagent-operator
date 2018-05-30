@@ -1,5 +1,4 @@
 ---
----
 
 openshift_cluster_content:
 - object: namespace
@@ -10,6 +9,8 @@ openshift_cluster_content:
   content:
   - name: "rbac"
     file: "{{ inventory_dir }}/../deploy/rbac.yaml"
+  - name: "scc"
+    file: "{{ inventory_dir }}/../deploy/dynatrace-scc.yaml"
 - object: dynatrace-oneagent
   content:
   - name: "crd"
