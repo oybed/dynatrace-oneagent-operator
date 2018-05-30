@@ -19,4 +19,4 @@ openshift_cluster_content:
     file: "{{ inventory_dir }}/../deploy/operator.yaml"
   - name: "cr"
     template: "{{ inventory_dir }}/../deploy/cr-template.yaml"
-    params: "{{ inventory_dir }}/../deploy/cr.parms"
+    params: "{{ inventory_dir }}/../deploy/cr.params"

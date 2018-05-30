@@ -18,8 +18,8 @@ objects:
     apiUrl: "${API_URL}"
     apiToken: "${API_TOKEN}"
     paasToken: "${PAAS_TOKEN}"
-    nodeSelector: ${NODE_SELECTOR}
-    tolerations: ${TOLERATONS} 
+#    nodeSelector: ${NODE_SELECTOR}
+#    tolerations: ${TOLERATONS} 
 parameters:
 - name: API_URL
   displayName: API URL for Dynatrace Tenant
@@ -33,11 +33,12 @@ parameters:
   displayName: PaaS Token
   description: PaaS Token for Dynatrace OneAgent
   required: true
-- name: NODE_SELECTOR 
-  displayName: Node Selector
-  description: Node Selector
-  value: {}
-- name: TOLERATONS 
-  displayName: Tolerations
-  description: Tolerations (https://kubernetes.io/docs/concepts/configuration/taint-and-toleration)
-  value: []
+# Need to figure out dictionary and list default values 
+#- name: NODE_SELECTOR 
+#  displayName: Node Selector
+#  description: Node Selector
+#  value: {}
+#- name: TOLERATONS 
+#  displayName: Tolerations
+#  description: Tolerations (https://kubernetes.io/docs/concepts/configuration/taint-and-toleration)
+#  value: []
